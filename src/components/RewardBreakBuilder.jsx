@@ -16,9 +16,7 @@ export default function RewardBreakBuilder({breaks = defaultBreaks, setBreaks}) 
       alert('Invalid multiplier value')
       return
     }
-    if (!isNaN(thresh) && !isNaN(mult)) {
-      setBreaks([...breaks, { thresh, mult }].sort((a, b) => a.thresh - b.thresh))
-    }
+    setBreaks(prev => [...prev, { thresh, mult }].sort((a, b) => a.thresh - b.thresh))
   }
 
   const handleResetBreaks = () => setBreaks(defaultBreaks)
@@ -30,10 +28,12 @@ export default function RewardBreakBuilder({breaks = defaultBreaks, setBreaks}) 
       return
     }
     
-    setBreaks([...breaks.map(({thresh, mult}) => ({thresh, mult: thresh === t ? newMult : mult}))])
+    setBreaks(prev =>
+      prev.map(b => b.thresh === t ? { ...b, mult: newMult } : b)
+    )
   }
 
-  const createHandleRemoveBreak = (ind) => () => setBreaks(breaks.filter((_, i) => i !== ind))
+  const handleRemoveBreak = (ind) => setBreaks(prev => prev.filter((_, i) => i !== ind))
 
   return (
     <>
@@ -46,7 +46,8 @@ export default function RewardBreakBuilder({breaks = defaultBreaks, setBreaks}) 
           <div key={thresh.toString()}>
             <p>Breakpoint: {thresh}</p>
             <p>Multiplier: {mult}</p>
-            <button onClick={createHandleRemoveBreak(i)}>Remove</button> <button onClick={() => handleEditBreak(thresh)}>Edit Multiplier</button>
+            <button onClick={() => handleRemoveBreak(i)}>Remove</button>
+            <button onClick={() => handleEditBreak(thresh)}>Edit Multiplier</button>
           </div>
         ))
       }

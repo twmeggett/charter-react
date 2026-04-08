@@ -4,7 +4,7 @@ import RewardBreakBuilder from '@components/RewardBreakBuilder';
 import { defaultBreaks } from "@/const"
 import customerData from '../customer-data.json';
 
-import { computeQtrTotals } from "./utils/computeQtrTotals";
+import { computeTotalsByMonth } from "./utils/computeTotalsByMonth";
 import RewardsDisplay from "./components/RewardsDisplay";
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   useEffect(() => { // recompute totals whenever transactions or reward breaks change
-    setQtrTotals(computeQtrTotals(transactions, breaks))
+    setQtrTotals(computeTotalsByMonth(transactions, breaks))
   }, [transactions, breaks])
 
   return (
