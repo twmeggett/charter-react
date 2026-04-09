@@ -37,7 +37,6 @@ export default function RewardBreaksDrawer({breaks, setBreaks}) {
     }
 
     if (isNaN(thresh) || isNaN(mult) || thresh <= 0 || mult <= 0) {
-      console.log({thresh, mult})
       return toast.warning("Please enter valid numbers for threshold and multiplier");
     }
 

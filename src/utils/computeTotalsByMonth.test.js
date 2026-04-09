@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { computeTotalsByMonth } from './computeTotalsByMonth';
 
-const mocUnsortedTransactions = [
+const mockTransactions = [
   {
     date: '2023-03-10',
     amount: 150,
@@ -29,8 +29,8 @@ const mocUnsortedTransactions = [
   },
 ];
 
-test('compute computeTotalsByMonth(mocUnsortedTransactions)', () => {
-  expect(computeTotalsByMonth(mocUnsortedTransactions)).toEqual(
+test('compute computeTotalsByMonth(mockTransactions)', () => {
+  expect(computeTotalsByMonth(mockTransactions)).toEqual(
     { 
       "0": {amount: 175, rewards: 95},
       "1": {amount: 100, rewards: 30},
