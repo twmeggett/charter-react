@@ -41,6 +41,10 @@ export default function RewardBreaksDrawer({breaks, setBreaks}) {
       return toast.warning("Please enter valid numbers for threshold and multiplier");
     }
 
+    if (breaks.length >= 5) {
+      return toast.error("I think 5 is quite enough breapoints for anyone to manage, don't you?");
+    }
+
     const newUUID = () => Math.random().toString(36).substring(2, 9); // generate a random string as a simple unique ID
     setBreaks(prev => [...prev, { id: newUUID(), thresh, mult }].sort((a, b) => a.thresh - b.thresh));
     resetInputFields();
