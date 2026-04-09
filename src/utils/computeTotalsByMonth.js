@@ -1,7 +1,7 @@
 export function computeTotalsByMonth(transactions) {
   return transactions
     .reduce((totals, tx) => {
-      const d = new Date(tx.date);
+      const d = tx.dateObject;
       if (isNaN(d)) { return totals } // skip invalid dates
 
       const month = d.getMonth(); // getMonth is 0-indexed
