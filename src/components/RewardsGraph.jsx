@@ -26,7 +26,7 @@ export default function RewardsGraph({ qtrTotals = {} }) {
   }
 
   return (
-    <ChartContainer config={chartConfig} className="min-h-50 max-h-140 w-full">
+    <ChartContainer config={chartConfig} className="min-h-50 w-full">
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
         <XAxis

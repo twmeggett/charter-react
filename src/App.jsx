@@ -24,12 +24,14 @@ function App() {
   const contentTemplate = (
     <>
       <RewardsGraph qtrTotals={qtrTotals} />
-      <TransactionsTable transactions={sortedRewardedTransactions} />
+      <div className="md:h-150 overflow-y-scroll">
+        <TransactionsTable transactions={sortedRewardedTransactions} />
+      </div>
     </>
   );
 
   return (
-    <div className="flex flex-col min-h-screen lg:px-40 md:px-4 sm:px-2">
+    <div className="flex flex-col min-h-screen sm:px-2 md:px-5 lg:max-w-5xl mx-auto">
       <div>
         <h1>Customer Rewards Calculator</h1>
         <RewardBreaksDrawer breaks={breaks} setBreaks={setBreaks} />
