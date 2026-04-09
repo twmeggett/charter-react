@@ -22,14 +22,10 @@ function App() {
   );
 
   const contentTemplate = (
-    <div className='flex flex-1 flex-col justify-items-end'>
-      <div>
-        <RewardsGraph qtrTotals={qtrTotals} />
-      </div>
-      <div>
-        <TransactionsTable transactions={sortedRewardedTransactions} />
-      </div>
-    </div>
+    <>
+      <RewardsGraph qtrTotals={qtrTotals} />
+      <TransactionsTable transactions={sortedRewardedTransactions} />
+    </>
   );
 
   return (
@@ -38,7 +34,7 @@ function App() {
         <h1>Customer Rewards Calculator</h1>
         <RewardBreaksDrawer breaks={breaks} setBreaks={setBreaks} />
       </div>
-      <main className="flex flex-col flex-1">
+      <main className="flex flex-col flex-1 justify-around">
         {
           loading ? loadingTemplate : contentTemplate
         }

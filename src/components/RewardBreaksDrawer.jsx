@@ -42,7 +42,7 @@ export default function RewardBreaksDrawer({breaks, setBreaks}) {
     }
 
     if (breaks.length >= 5) {
-      return toast.error("I think 5 is quite enough breapoints for anyone to manage, don't you?");
+      return toast.error("I think 5 is quite enough breapoints for anyone to manage, don't you? ;-)");
     }
 
     const newUUID = () => Math.random().toString(36).substring(2, 9); // generate a random string as a simple unique ID
