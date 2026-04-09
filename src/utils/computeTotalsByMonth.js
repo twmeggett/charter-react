@@ -1,10 +1,5 @@
-import { addRewardsToTransactions } from "./addRewardsToTransactions";
-
-export function computeTotalsByMonth(transactions, rewardBreaks) {
-  const rewardedTransactions = addRewardsToTransactions(transactions, rewardBreaks);
-  
-  return rewardedTransactions
-    .sort((a, b) => new Date(a.date) - new Date(b.date))
+export function computeTotalsByMonth(transactions) {
+  return transactions
     .reduce((totals, tx) => {
       const d = new Date(tx.date);
       if (isNaN(d)) { return totals } // skip invalid dates

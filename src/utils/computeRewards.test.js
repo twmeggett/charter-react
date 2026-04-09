@@ -1,6 +1,8 @@
 import { expect, test } from 'vitest';
 import { computeRewards } from './computeRewards';
 
+const mockBreakpoints0 = [];
+
 const mockBreakpoints1 = [
   {
     thresh: 50,
@@ -15,7 +17,7 @@ const mockBreakpoints1 = [
 const mockBreakpoints2 = [
   {
     thresh: 50,
-    mult: 1,
+    mult: 1.5,
   },
   {
     thresh: 100,
@@ -26,6 +28,10 @@ const mockBreakpoints2 = [
     mult: 3,
   },
 ]
+
+test('compute reward(120, mockBreakpoints0) === 0', () => {
+  expect(computeRewards(120, mockBreakpoints0)).toBe(0);
+})
 
 test('compute reward(49, mockBreakpoints1) === 0', () => {
   expect(computeRewards(49, mockBreakpoints1)).toBe(0);
@@ -39,6 +45,7 @@ test('compute reward(120, mockBreakpoints1) === 90 -> 50 + 40', () => {
   expect(computeRewards(120, mockBreakpoints1)).toBe(90);
 })
 
-test('compute reward(250, mockBreakpoints2) === 400 -> 50 + 200 + 150', () => {
-  expect(computeRewards(250, mockBreakpoints2)).toBe(400);
+test('compute reward(250, mockBreakpoints2) === 425 -> 75 + 200 + 150', () => {
+  expect(computeRewards(250, mockBreakpoints2)).toBe(425);
 })
+  
