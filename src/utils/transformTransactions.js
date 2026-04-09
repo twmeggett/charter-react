@@ -1,6 +1,6 @@
 import { computeRewards } from "./computeRewards";
 
-export function addRewardsToTransactions(transactions, rewardBreaks) {
+export function transformTransactions(transactions, rewardBreaks) {
   return transactions
     .map((tx) => ({
       ...tx,

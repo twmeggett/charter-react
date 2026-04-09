@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 
 import { defaultBreaks } from "@/const"
 import { computeTotalsByMonth } from "@/utils/computeTotalsByMonth";
-import { addRewardsToTransactions } from "@/utils/addRewardsToTransactions";
+import { transformTransactions } from "@/utils/transformTransactions";
 import { useGetTransactions } from "./useGetTransactions";
 
 export function useRewardsDashboard() {
@@ -10,7 +10,7 @@ export function useRewardsDashboard() {
   const {loading, transactions} = useGetTransactions();
   const sortedRewardedTransactions = useMemo(
     () => {
-      const rewarded = addRewardsToTransactions(transactions, breaks);
+      const rewarded = transformTransactions(transactions, breaks);
       return [...rewarded].sort((a, b) => a.dateObject - b.dateObject)
     },
     [transactions, breaks]

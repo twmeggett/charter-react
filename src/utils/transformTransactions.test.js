@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { addRewardsToTransactions } from './addRewardsToTransactions';
+import { transformTransactions } from './transformTransactions';
 
 const mockTransactions = [
   {
@@ -35,32 +35,37 @@ const mockBreakpoints = [
   }
 ]
 
-test('compute addRewardsToTransactions(mockTransactions, mockBreakpoints)', () => {
-  expect(addRewardsToTransactions(mockTransactions, mockBreakpoints)).toEqual([
+test('compute transformTransactions(mockTransactions, mockBreakpoints)', () => {
+  expect(transformTransactions(mockTransactions, mockBreakpoints)).toEqual([
     {
       date: '2023-01-15',
       amount: 120,
       rewards: 90,
+      dateObject: new Date("2023-01-15T00:00:00.000Z"),
     },
     {
       date: '2023-01-24',
       amount: 55,
       rewards: 5,
+      dateObject: new Date("2023-01-24T00:00:00.000Z"),
     },
     {
       date: '2023-02-20',
       amount: 80,
       rewards: 30,
+      dateObject: new Date("2023-02-20T00:00:00.000Z"),
     },
     {
       date: '2023-02-23',
       amount: 20,
       rewards: 0,
+      dateObject: new Date("2023-02-23T00:00:00.000Z"),
     },
     {
       date: '2023-03-10',
       amount: 150,
-      rewards: 150
+      rewards: 150,
+      dateObject: new Date("2023-03-10T00:00:00.000Z"),
     },
   ]);
 })
