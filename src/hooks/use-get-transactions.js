@@ -1,39 +1,29 @@
 import { useState, useEffect } from "react";
 
-import customerData from '../../customer-data.json';
+import { fakeTransactionsFetch } from "@/utils/get-transactions";
 
 export function useGetTransactions() {
   const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  const fakeTransactionsFetch = (url) => {
-    console.log(`Fetching transactions from ${url}...`);
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          ok: true,
-          status: 200,
-          json: () => Promise.resolve(customerData),
-        });
-      }, 2000);
-    });
-  };
+  const [error, setError] = useState('');
 
   useEffect(() => { // simulate loading data from an API
-    fakeTransactionsFetch('/api/transactions')
+    fakeTransactionsFetch()
       .then(res => res.json())
       .then(data => {
-        setTransactions(data.transactions);
+        setTransactions(data);
         setLoading(false);
       })
       .catch(error => {
         console.error("Error fetching transactions:", error);
+        setError(error)
         setLoading(false);
       });
   }, [])
 
   return {
     transactions,
-    loading
+    loading,
+    error
   }
 }

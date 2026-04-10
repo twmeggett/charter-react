@@ -3,12 +3,10 @@ import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 import { ChartContainer } from "@/components/ui/chart"
 
-export function RewardsGraph({ qtrTotals }) {
-  const chartData = Object.entries(qtrTotals).map(([month, {amount, rewards}]) => {
-    const monthName = new Date(2000, month).toLocaleString('default', { month: 'short' }); // convert month number to name
-    
+export function RewardsGraph({ customerTotals }) {
+  const chartData = Object.entries(customerTotals).map(([customerId, {amount, rewards}]) => {
     return {
-      month: monthName,
+      customer: customerId,
       amount,
       rewards,
     }
@@ -30,7 +28,7 @@ export function RewardsGraph({ qtrTotals }) {
       <BarChart accessibilityLayer data={chartData}>
         <CartesianGrid vertical={false} />
         <XAxis
-          dataKey="month"
+          dataKey="customer"
           tickLine={false}
           tickMargin={10}
           axisLine={true}

@@ -11,8 +11,8 @@ function App() {
   const { 
     tiers,
     loading,
-    sortedRewardedTransactions,
-    qtrTotals,
+    monthlyTotals,
+    customerTotals,
     tierActions
   } = useRewardsDashboard();
   
@@ -24,9 +24,11 @@ function App() {
 
   const contentTemplate = (
     <>
-      <RewardsGraph qtrTotals={qtrTotals} />
+      <RewardsGraph customerTotals={customerTotals} />
       <div className="md:h-150 overflow-y-scroll">
-        <TransactionsTable transactions={sortedRewardedTransactions} />
+        <TransactionsTable
+          monthlyTotals={monthlyTotals}
+        />
       </div>
     </>
   );
@@ -35,7 +37,7 @@ function App() {
     <RewardsDashboardContext.Provider value={tierActions}>
       <div className="flex flex-col min-h-screen sm:px-2 md:px-5 lg:max-w-5xl mx-auto">
         <div>
-          <h1>Customer Rewards Calculator</h1>
+          <h1>Customer Totals and Rewards By Quarter</h1>
           <RewardTiersDrawer tiers={tiers} />
         </div>
         <main className="flex flex-col flex-1 justify-around">

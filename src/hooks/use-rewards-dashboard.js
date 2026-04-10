@@ -4,12 +4,13 @@ import { toast } from "sonner"
 import { defaultTiers } from "@/const"
 import { computeTotalsByMonth } from "@/utils/compute-totals-by-month";
 import { transformTransactions } from "@/utils/transform-transactions";
+import { computeCustomerTotals } from "@/utils/compute-customer-totals";
 import { useGetTransactions } from "./use-get-transactions";
 
 export function useRewardsDashboard() {
   const [tiers, setTiers] = useState(defaultTiers);
-  const {loading, transactions} = useGetTransactions();
-  
+  const {loading, transactions, error} = useGetTransactions();
+
   const sortedRewardedTransactions = useMemo(
     () => {
       const rewarded = transformTransactions(transactions, tiers);
@@ -18,9 +19,14 @@ export function useRewardsDashboard() {
     [transactions, tiers]
   );
 
-  const qtrTotals = useMemo(
+  const monthlyTotals = useMemo(
     () => computeTotalsByMonth(sortedRewardedTransactions),
     [sortedRewardedTransactions]
+  );
+
+  const customerTotals = useMemo(
+    () => computeCustomerTotals(monthlyTotals),
+    [monthlyTotals]
   );
 
   const resetTiers = useCallback(() => {
@@ -64,8 +70,9 @@ export function useRewardsDashboard() {
     tiers,
     setTiers,
     loading,
-    sortedRewardedTransactions,
-    qtrTotals,
+    error,
+    monthlyTotals,
+    customerTotals,
     tierActions
   }
 } 
