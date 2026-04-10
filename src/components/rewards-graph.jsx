@@ -3,7 +3,7 @@ import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 import { ChartContainer } from "@/components/ui/chart"
 
-export default function RewardsGraph({ qtrTotals = {} }) {
+export function RewardsGraph({ qtrTotals }) {
   const chartData = Object.entries(qtrTotals).map(([month, {amount, rewards}]) => {
     const monthName = new Date(2000, month).toLocaleString('default', { month: 'short' }); // convert month number to name
     

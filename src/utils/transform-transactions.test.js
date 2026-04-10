@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { transformTransactions } from './transformTransactions';
+import { transformTransactions } from './transform-transactions';
 
 const mockTransactions = [
   {
@@ -24,19 +24,19 @@ const mockTransactions = [
   },
 ];
 
-const mockBreakpoints = [
+const mockTiers = [
   {
-    thresh: 50,
+    start: 50,
     mult: 1,
   },
   {
-    thresh: 100,
+    start: 100,
     mult: 2,
   }
 ]
 
-test('compute transformTransactions(mockTransactions, mockBreakpoints)', () => {
-  expect(transformTransactions(mockTransactions, mockBreakpoints)).toEqual([
+test('compute transformTransactions(mockTransactions, mockTiers)', () => {
+  expect(transformTransactions(mockTransactions, mockTiers)).toEqual([
     {
       date: '2023-01-15',
       amount: 120,

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { computeTotalsByMonth } from './computeTotalsByMonth';
+import { computeTotalsByMonth } from './compute-totals-by-month';
 
 const mockTransactions = [
   {

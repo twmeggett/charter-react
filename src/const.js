@@ -1,12 +1,12 @@
-export const defaultBreaks = [
+export const defaultTiers = [
   {
     id: "DEFBR-1",
-    thresh: 50,
+    start: 50,
     mult: 1
   },
   {
     id: "DEFBR-2",
-    thresh: 100,
+    start: 100,
     mult: 2
   }
 ];

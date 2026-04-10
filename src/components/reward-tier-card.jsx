@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -6,13 +8,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { RewardsDashboardContext } from "@/contexts/rewards-dashboard-context";
 
-export default function CardSmall({ breakpoint, onDelete }) {
-  const { thresh, mult } = breakpoint
+export function RewardTierCard({ tier }) {
+  const {removeTier} = useContext(RewardsDashboardContext);
+  const { id, start, mult } = tier;
+
   return (
     <Card size="sm" className="mx-auto w-full max-w-sm">
       <CardHeader>
-        <CardTitle>Threshold: {thresh}</CardTitle>
+        <CardTitle>Start: {start}</CardTitle>
       </CardHeader>
       <CardContent>
         <p>Multiplier: {mult}</p>
@@ -22,7 +27,7 @@ export default function CardSmall({ breakpoint, onDelete }) {
           variant="secondary"
           size="sm"
           className="w-full"
-          onClick={() => onDelete()}>
+          onClick={() => removeTier(id)}>
           Delete
         </Button>
       </CardFooter>

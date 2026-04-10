@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 
-function TransactionsTable({transactions = []}) {
+export function TransactionsTable({transactions = []}) {
   return (
     <Table>
       <TableCaption>Total Transactions for Quarter</TableCaption>

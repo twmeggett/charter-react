@@ -1,18 +1,19 @@
-import RewardBreaksDrawer from '@components/RewardBreaksDrawer';
 import { Toaster } from "@/components/ui/sonner";
 import { Spinner } from "@/components/ui/spinner";
 
-import RewardsGraph from "./components/RewardsGraph";
-import TransactionsTable from "./components/TransactionsTable";
-import { useRewardsDashboard } from "./hooks/useRewardsDashboard";
+import { RewardsDashboardContext } from "@/contexts/rewards-dashboard-context";
+import { RewardTiersDrawer } from '@/components/reward-tiers-drawer';
+import { RewardsGraph } from "@/components/rewards-graph";
+import { TransactionsTable } from "@/components/transactions-table";
+import { useRewardsDashboard } from "@/hooks/use-rewards-dashboard";
 
 function App() {
   const { 
-    breaks,
-    setBreaks,
+    tiers,
     loading,
     sortedRewardedTransactions,
-    qtrTotals 
+    qtrTotals,
+    tierActions
   } = useRewardsDashboard();
   
   const loadingTemplate = (
@@ -31,18 +32,20 @@ function App() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen sm:px-2 md:px-5 lg:max-w-5xl mx-auto">
-      <div>
-        <h1>Customer Rewards Calculator</h1>
-        <RewardBreaksDrawer breaks={breaks} setBreaks={setBreaks} />
+    <RewardsDashboardContext.Provider value={tierActions}>
+      <div className="flex flex-col min-h-screen sm:px-2 md:px-5 lg:max-w-5xl mx-auto">
+        <div>
+          <h1>Customer Rewards Calculator</h1>
+          <RewardTiersDrawer tiers={tiers} />
+        </div>
+        <main className="flex flex-col flex-1 justify-around">
+          {
+            loading ? loadingTemplate : contentTemplate
+          }
+        </main>
+        <Toaster position="top-center" />
       </div>
-      <main className="flex flex-col flex-1 justify-around">
-        {
-          loading ? loadingTemplate : contentTemplate
-        }
-      </main>
-      <Toaster position="top-center" />
-    </div>
+    </RewardsDashboardContext.Provider>
   )
 }
 
