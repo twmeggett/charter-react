@@ -3,7 +3,7 @@
 You can preview the app here -> https://twmeggett.github.io/charter-react/
 
 To start the application run -> npm run dev 
-http://localhost:5173/charter-react/
+ * http://localhost:5173/charter-react/
 
 I'd like to point out that there's a drawer which allows you to add or delete tiers in the project. The graph and transactions table will update accordingly. This is to illustrate that the reward tiers are completely configurable.
 
