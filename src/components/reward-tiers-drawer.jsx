@@ -1,3 +1,5 @@
+import { useContext } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -11,8 +13,11 @@ import {
 } from "@/components/ui/drawer";
 import { RewardTierCard } from "@/components/reward-tier-card";
 import { AddTierForm } from "@/components/add-tier-form";
+import { RewardsStateContext } from "@/contexts/rewards-context";
 
-export function RewardTiersDrawer({tiers}) {
+export function RewardTiersDrawer() {
+  const { tiers } = useContext(RewardsStateContext);
+
   return (
     <Drawer direction="left">
       <DrawerTrigger asChild>

@@ -13,6 +13,6 @@ Also, I've made the dashboard relatively mobile friendly with the help of tailwi
 
 - Things to consider
   * Even though there's a tsconfig file, this app is written in js as the prompt demands. This is here to solve an aliasing dependency required by shadcn.
+  * In the same vein, even though there's a reducer folder and shared dispatch, this app isn't using redux as the prompt requested. It's using React's native useReducer and the Context API instead for global state management. I wanted to avoid prop-drilling, so that the components only need to be concerned with the props directly affecting them. 
   * I'm using kebab case for React component to solve the famous renaming issue on windows, and to keep naming consistent, simple, and easily readable.
   * I'm purposely not using default imports as they can be misspelled and lead to inconsistencies.
-  * You may notice in use-rewards-dashboard I'm wrapping the tier manipulation actions in a useCallback, and then constructing an object with them and memoizing that object. That's necessary to pass that object into the context provider and not cause unnecessary re-renders. Use context was able to make the code a lot cleaner by removing prop-drilling and ensuring each component only had to worry about the props directly affecting it, but it has a drawback of being inefficient out the box, and without being able to use Redux as per the instructions, this was the next best thing.

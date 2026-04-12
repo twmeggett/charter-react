@@ -1,29 +1,29 @@
-import { useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
-import { fakeTransactionsFetch } from "@/utils/get-transactions";
+import { RewardsDispatchContext, RewardsStateContext } from "@/contexts/rewards-context";
+import { fakeTransactionsFetch } from "@/api/get-transactions";
+import { errorLoadingTransactions, loadTransactions, startLoadingTransactions } from "@/reducers/rewards-reducer";
 
 export function useGetTransactions() {
-  const [transactions, setTransactions] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const { transactions, loading, error } = useContext(RewardsStateContext);
+  const dispatch = useContext(RewardsDispatchContext);
 
   useEffect(() => { // simulate loading data from an API
+    dispatch(startLoadingTransactions());
     fakeTransactionsFetch()
       .then(res => res.json())
       .then(data => {
-        setTransactions(data);
-        setLoading(false);
+        dispatch(loadTransactions(data));
       })
       .catch(error => {
         console.error("Error fetching transactions:", error);
-        setError(error)
-        setLoading(false);
+        dispatch(errorLoadingTransactions(error));
       });
-  }, [])
+  }, [dispatch]);
 
   return {
-    transactions,
     loading,
+    transactions,
     error
   }
 }
