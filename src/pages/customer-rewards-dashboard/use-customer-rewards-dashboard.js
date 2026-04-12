@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 
 import { transformTransactions } from "@/utils/transform-transactions";
-import { useGetTransactions } from "../../hooks/use-get-transactions";
+import { useGetTransactions } from "@/hooks/use-get-transactions";
 import { computeTotalsByMonth } from "@/utils/compute-totals-by-month";
 import { computeCustomerTotals } from "@/utils/compute-customer-totals";
 import { RewardsStateContext } from "@/contexts/rewards-context";
